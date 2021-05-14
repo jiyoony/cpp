@@ -1,0 +1,4 @@
+#include "MyTerm.h"
+// Constructor
+myTerm::myTerm(int c, unsigned e) : coeff(c), exp(e)
+{}// copy constructormyTerm::myTerm(const myTerm &term) : coeff(term.coeff), exp(term.exp){}// overloaded operatorsbool myTerm::operator == (const myTerm& term) const{}// overloaded operatorsbool myTerm::operator != (const myTerm& term) const{}// overloaded operatorsbool myTerm::operator < (const myTerm& term) const{returnexp > term.exp;}myTerm myTerm::operator -() const{}// derivative of a termmyTerm myTerm::ddx() const{if (exp == 0)return myTerm(0, 0);return myTerm(exp*coeff, exp-1);}// output operatorostream& operator <<(ostream &outStream, const myTerm& term){if (term.exp == 0)if (term.coeff == 0)// nothing to outputreturn outStream;elsereturn outStream << term.coeff;if (term.coeff == 1)outStream << "x";else if (term.coeff == -1)outStream << "-x";elseoutStream << term.coeff << "x";if (term.exp == 1)return outStream;else return outStream << "^" << term.exp;}
